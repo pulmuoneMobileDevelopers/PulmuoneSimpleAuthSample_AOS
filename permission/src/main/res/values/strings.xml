@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">permission</string>
+
+    <string name="text_ok">확인</string>
+
+    <string name="notice_app_permission_title">앱 접근권한 안내</string>
+
+    <string name="title_require_permission">필수적 접근 권한</string>
+    <string name="title_optional_permission">선택적 접근 권한</string>
+    <string name="title_setting_permission">접근권한 변경 방법</string>
+
+    <string name="text_permission_setting_way">설정 > 풀무원000</string>
+
+    <string name="text_permission_camera_main">카메라</string>
+    <string name="text_permission_camera_sub">카메라 촬영 허용</string>
+</resources>

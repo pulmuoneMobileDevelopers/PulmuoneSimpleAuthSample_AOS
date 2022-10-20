@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBackground"
+    android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/pin_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize"
+        android:background="@color/colorBackground"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light" >
+
+        <TextView
+            android:id="@+id/bio_toolbar_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/bio_reg"
+            android:textStyle="bold"
+            android:textColor="@color/colorText"
+            android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+            android:textSize="18sp"
+            android:fontFamily="@font/pretendard"
+            android:layout_gravity="center"/>
+
+        <ImageView
+            android:id="@+id/img_cancel"
+            android:layout_gravity="end|center_vertical"
+            android:layout_marginEnd="22dp"
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:src="@drawable/ic_close" />
+
+    </androidx.appcompat.widget.Toolbar>
+
+<!--    <FrameLayout-->
+<!--        xmlns:tools="http://schemas.android.com/tools"-->
+<!--        android:id="@+id/bioContainer"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        tools:context=".ui.bio.view.BioModuleActivity" />-->
+
+    <TextView
+        android:id="@+id/tv_bio_sub_title"
+        android:layout_width="match_parent"
+        android:layout_height="32dp"
+        android:layout_gravity="center_horizontal"
+        android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+        android:lineSpacingExtra="6sp"
+        android:translationY="-2.87sp"
+        android:layout_marginTop="40dp"
+        android:gravity="center_horizontal|top" />
+
+    <ImageView
+        android:layout_width="132dp"
+        android:layout_height="62dp"
+        android:layout_marginTop="40dp"
+        android:layout_gravity="center_horizontal"
+        android:src="@mipmap/ic_bio" />
+
+    <TextView
+        android:id="@+id/tv_bio_re_auth"
+        android:layout_width="wrap_content"
+        android:layout_height="21dp"
+        android:layout_gravity="center_horizontal"
+        android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+        android:lineSpacingExtra="6sp"
+        android:text="@string/bio_auth"
+        android:translationY="-2.87sp"
+        android:layout_marginTop="30dp"
+        android:textSize="14sp"
+        android:textColor="@color/colorBioText"
+        android:gravity="center_horizontal|top" />
+
+</androidx.appcompat.widget.LinearLayoutCompat>

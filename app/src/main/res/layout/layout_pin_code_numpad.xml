@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+        <variable
+            name="numPadListener"
+            type="com.android.pulmuone.sample.ui.pin.NumPadListener" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:orientation="horizontal"
+            android:weightSum="3">
+
+            <Button
+                style="@style/passCodeButton"
+                android:layout_marginStart="16dp"
+                android:onClick="@{(v) -> numPadListener.onNumberClicked('1')}"
+                android:text="@string/numPad_1" />
+
+            <Button
+                style="@style/passCodeButton"
+                android:layout_marginStart="8dp"
+                android:onClick="@{(v) -> numPadListener.onNumberClicked('2')}"
+                android:text="@string/numPad_2" />
+
+            <Button
+                style="@style/passCodeButton"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="16dp"
+                android:onClick="@{(v) -> numPadListener.onNumberClicked('3')}"
+                android:text="@string/numPad_3" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:orientation="horizontal"
+            android:weightSum="3">
+
+            <Button
+                style="@style/passCodeButton"
+                android:layout_marginStart="16dp"
+                android:onClick="@{(v) -> numPadListener.onNumberClicked('4')}"
+                android:text="@string/numPad_4" />
+
+            <Button
+                style="@style/passCodeButton"
+                android:layout_marginStart="8dp"
+                android:onClick="@{(v) -> numPadListener.onNumberClicked('5')}"
+                android:text="@string/numPad_5" />
+
+            <Button
+                style="@style/passCodeButton"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="16dp"
+                android:onClick="@{(v) -> numPadListener.onNumberClicked('6')}"
+                android:text="@string/numPad_6" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:orientation="horizontal"
+            android:weightSum="3">
+
+            <Button
+                style="@style/passCodeButton"
+                android:layout_marginStart="16dp"
+                android:onClick="@{(v) -> numPadListener.onNumberClicked('7')}"
+                android:text="@string/numPad_7" />
+
+            <Button
+                style="@style/passCodeButton"
+                android:layout_marginStart="8dp"
+                android:onClick="@{(v) -> numPadListener.onNumberClicked('8')}"
+                android:text="@string/numPad_8" />
+
+            <Button
+                style="@style/passCodeButton"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="16dp"
+                android:onClick="@{(v) -> numPadListener.onNumberClicked('9')}"
+                android:text="@string/numPad_9" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="3">
+
+            <Button
+                style="@style/passCodeButton"
+                android:textSize="16sp"
+                android:layout_marginStart="16dp"
+                android:onClick="@{(v) -> numPadListener.onClearClicked()}"
+                android:text="@string/pin_code_clear"/>
+
+            <Button
+                style="@style/passCodeButton"
+                android:layout_marginStart="8dp"
+                android:onClick="@{(v) -> numPadListener.onNumberClicked('0')}"
+                android:text="@string/numPad_0" />
+
+            <FrameLayout
+                style="@style/passCodeButton"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="16dp">
+                <Button
+                    style="@style/passCodeButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:onClick="@{(v) -> numPadListener.onEraseClicked()}" />
+                <ImageView
+                    android:layout_width="19dp"
+                    android:layout_height="16dp"
+                    android:src="@mipmap/arrow"
+                    android:layout_gravity="center"/>
+            </FrameLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+</layout>

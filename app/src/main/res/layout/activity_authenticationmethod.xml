@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBackground"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/auth_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize"
+        android:background="@color/colorBackground"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/toolbar_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/auth_method"
+            android:textStyle="bold"
+            android:textColor="@color/colorText"
+            android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+            android:textSize="18sp"
+            android:fontFamily="@font/pretendard"
+            android:layout_gravity="center"/>
+
+        <ImageView
+            android:id="@+id/img_cancel"
+            android:layout_gravity="end|center_vertical"
+            android:layout_marginEnd="22dp"
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:src="@drawable/ic_close" />
+
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/pick_auth_method"
+        android:textColor="@color/colorText"
+        android:textSize="22sp"
+        android:fontFamily="@font/pretendard_regular"
+        android:layout_marginTop="40dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/auth_toolbar"/>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_title"
+        android:layout_marginTop="40dp"
+        android:orientation="vertical">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:orientation="horizontal"
+            android:background="@drawable/layout_outline"
+            android:id="@+id/btnBio">
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/selector_text_pressed"
+                android:layout_marginStart="40dp"
+                android:fontFamily="@font/pretendard_regular"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:textSize="16sp"
+                android:text="@string/bio_auth"/>
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="84dp"
+                android:layout_height="40dp"
+                android:layout_marginEnd="40dp"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:background="@drawable/selector_bio_pressed"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:background="@drawable/layout_outline"
+            android:orientation="horizontal"
+            android:id="@+id/btnPin"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp">
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/selector_text_pressed"
+                android:layout_marginStart="40dp"
+                android:fontFamily="@font/pretendard_regular"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:textSize="16sp"
+                android:text="@string/pin_number"/>
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="84dp"
+                android:layout_height="40dp"
+                android:layout_marginEnd="40dp"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:background="@drawable/selector_pin_pressed" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBackground"
+    android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/pin_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize"
+        android:background="@color/colorBackground"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light" >
+
+        <TextView
+            android:id="@+id/pin_toolbar_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/simple_auth"
+            android:textStyle="bold"
+            android:textColor="@color/colorText"
+            android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+            android:textSize="18sp"
+            android:fontFamily="@font/pretendard"
+            android:layout_gravity="center"/>
+
+        <ImageView
+            android:id="@+id/img_cancel"
+            android:layout_gravity="end|center_vertical"
+            android:layout_marginEnd="22dp"
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:src="@drawable/ic_close" />
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <FrameLayout
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/pinContainer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.pin.view.PinModuleActivity" />
+
+</androidx.appcompat.widget.LinearLayoutCompat>

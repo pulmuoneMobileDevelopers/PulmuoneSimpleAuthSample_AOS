@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- View가 눌렸을 때 @android:drawable/star_big_on 을 보여준다.-->
+    <item android:drawable="@mipmap/ic_pin_pressed" android:state_pressed="true" />
+
+    <!-- View가 눌리지 않았을 때 @android:drawable/star_big_off 를 보여준다.-->
+    <item android:drawable="@mipmap/ic_pin" android:state_pressed="false" />
+</selector>

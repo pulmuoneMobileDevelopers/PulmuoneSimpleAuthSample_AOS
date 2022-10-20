@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+    <color name="colorPrimary">#71BF3B</color>
+    <color name="colorPrimaryDark">#71BF3B</color>
+    <color name="colorAccent">#03DAC5</color>
+    <color name="colorSplash">#71BF3B</color>
+    <color name="colorBlack">#000000</color>
+
+    <color name="pin_normal">#6B767E</color>
+    <color name="colorText">#262626</color>
+    <color name="colorText2">#5F6973</color>
+    <color name="colorSelectorDefault">#C7CDD3</color>
+    <color name="colorSelectorPressed">#79AA0D</color>
+    <color name="colorBackground">#FFFFFF</color>
+
+    <color name="colorGray_C">#C7CDD4</color>
+    <color name="colorNumpad">#262626</color>
+    <color name="colorGreen">#79AA0D</color>
+
+    <color name="colorErrText">#FF333D</color>
+    <color name="colorErrBg">#FDF6F6</color>
+
+    <color name="colorToastText">#FFFFFF</color>
+    <color name="colorToastBg">#2D3741</color>
+
+    <color name="colorBase">#3E7C65</color>
+    <color name="colorBasePress">#4D997D</color>
+    <color name="colorCancelBase">#464C51</color>
+    <color name="colorCancelBasePress">#5d5d5d</color>
+
+    <color name="colorDialogCancelBg">#F3F5F7</color>
+    <color name="colorDialogCancelPressBg">#C7CDD3</color>
+    <color name="colorDialogCancelText">#AAB4BE</color>
+    <color name="colorDialogOkBg">#A0DA11</color>
+    <color name="colorDialogOkPressBg">#537B0A</color>
+    <color name="colorDialogOkText">#FFFFFF</color>
+
+    <color name="colorBioText">#78828C</color>
+    <color name="colorToolbar">#A0D911</color>
+</resources>

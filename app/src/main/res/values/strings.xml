@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Pulmuone Sample</string>
+    <string name="title">풀무원 샘플앱</string>
+    <string name="settings">설정</string>
+    <string name="quit">종료하시겠습니까?</string>
+    <string name="battery">베터리가 부족합니다.</string>
+    <string name="alert" translatable="true">알림</string>
+    <string name="confirm">확인</string>
+    <string name="back">이전키를 한번 더 누르시면 종료됩니다.</string>
+    <string name="ok">확인</string>
+    <string name="cancel">취소</string>
+
+    <string name="pick_auth_method">인증 방식을 선택해주세요.</string>
+    <string name="pin_number">간편번호인증</string>
+    <string name="bio_auth">생체인증</string>
+    <string name="bio_reg">생체인증 등록</string>
+    <string name="simple_auth">간편인증</string>
+
+    <string name="delete"><![CDATA[<-]]></string>
+    <string name="pin_code_clear">초기화</string>
+    <string name="simple_auth_reset">간편인증 재설정</string>
+    <string name="enter_registered_pin">등록한 간편비밀번호를 입력하세요.</string>
+    <string name="enter_new_pin">새로운 간편비밀번호를 입력하세요.</string>
+    <string name="enter_again">한 번 더 입력해주세요.</string>
+    <string name="pin_not_match">간편비밀번호가 일치하지 않습니다.</string>
+    <string name="failed_pin_number_count">간편번호가 일치하지 않습니다.</string>
+    <string name="auth_complete">인증이 완료되었습니다.</string>
+    <string name="auth_fail">인증에 실패하였습니다.</string>
+    <string name="pin_set">간편비밀번호가 설정되었습니다.</string>
+    <string name="pin_fail_5times">5회 간편비밀번호 입력 실패</string>
+    <string name="auth_with_bio">생체정보로 인증해주세요.</string>
+    <string name="device_not_supported">생체인증을 지원하지 않는 기기입니다.</string>
+    <string name="device_lock_out">생체인증 시도한 실패 횟수가 너무 많아 생체인증을 사용할 수 없습니다.</string>
+    <string name="device_not_enrolled">기기에 등록된 생체인증 정보가 없습니다. 생체인증 등록을 위해 설정으로 이동하시겠습니까?</string>
+    <string name="auth_not_use">생체인증을 사용할 수 없습니다.</string>
+
+    <string name="enter_pin_number">간편비밀번호를 입력하세요.</string>
+    <string name="auth_method">인증 방식</string>
+
+    <string name="dialog_update_btn_yes_text">확인</string>
+    <string name="dialog_update_btn_no_text">취소</string>
+
+    <string name="bio_registered">생체정보가 등록되었습니다.</string>
+    <string name="numPad_1">1</string>
+    <string name="numPad_2">2</string>
+    <string name="numPad_3">3</string>
+    <string name="numPad_4">4</string>
+    <string name="numPad_5">5</string>
+    <string name="numPad_6">6</string>
+    <string name="numPad_7">7</string>
+    <string name="numPad_8">8</string>
+    <string name="numPad_9">9</string>
+    <string name="numPad_0">0</string>
+
+    <string name="permission">권한</string>
+    <string name="permission_toolbar">모바일 앱 권한 요청 샘플 프로젝트</string>
+</resources>
