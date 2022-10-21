@@ -219,6 +219,7 @@ class BioModuleActivity : AppCompatActivity() {
                                             callBioManager()
                                         },
                                         _cancel = {
+                                            startActivity(Intent(this@BioModuleActivity, MainActivity::class.java))
                                             overridePendingTransition(0, 0)
                                             finish()
                                         },
@@ -255,6 +256,7 @@ class BioModuleActivity : AppCompatActivity() {
                                         _ok = { },
                                         _cancel = {},
                                         _singleOk = {
+                                            startActivity(Intent(this@BioModuleActivity, MainActivity::class.java))
                                             overridePendingTransition(0, 0)
                                             finish()
                                         },
@@ -290,17 +292,9 @@ class BioModuleActivity : AppCompatActivity() {
                                   @hide
                                  */
                                 13 -> { // BIOMETRIC_ERROR_NEGATIVE_BUTTON -> 사용자가 '취소'버튼 클릭
-                                    when (bioRegistered) {
-                                        KEY_INTRO -> {
-                                            startActivity(Intent(this, MainActivity::class.java))
-                                            overridePendingTransition(0, 0)
-                                            finish()
-                                        }
-                                        else -> {
-                                            overridePendingTransition(0, 0)
-                                            finish()
-                                        }
-                                    }
+                                    startActivity(Intent(this@BioModuleActivity, MainActivity::class.java))
+                                    overridePendingTransition(0, 0)
+                                    finish()
                                 }
 
                                 /*
@@ -350,6 +344,7 @@ class BioModuleActivity : AppCompatActivity() {
                                 .show()
 
                             PreferenceManager().setString(this, SIMPLE_AUTH_STATUS, BIO_AUTH)
+                            startActivity(Intent(this@BioModuleActivity, MainActivity::class.java))
                             overridePendingTransition(0, 0)
                             finish()
                         }
@@ -415,6 +410,7 @@ class BioModuleActivity : AppCompatActivity() {
                                             callBioManager()
                                         },
                                         _cancel = {
+                                            startActivity(Intent(this@BioModuleActivity, MainActivity::class.java))
                                             overridePendingTransition(0, 0)
                                             finish()
                                         },
@@ -451,6 +447,7 @@ class BioModuleActivity : AppCompatActivity() {
                                         _ok = { },
                                         _cancel = {},
                                         _singleOk = {
+                                            startActivity(Intent(this@BioModuleActivity, MainActivity::class.java))
                                             overridePendingTransition(0, 0)
                                             finish()
                                         },
@@ -486,17 +483,9 @@ class BioModuleActivity : AppCompatActivity() {
                                   @hide
                                  */
                                 13 -> { // BIOMETRIC_ERROR_NEGATIVE_BUTTON -> 사용자가 '취소'버튼 클릭
-                                    when (bioRegistered) {
-                                        KEY_INTRO -> {
-                                            startActivity(Intent(this, MainActivity::class.java))
-                                            overridePendingTransition(0, 0)
-                                            finish()
-                                        }
-                                        else -> {
-                                            overridePendingTransition(0, 0)
-                                            finish()
-                                        }
-                                    }
+                                    startActivity(Intent(this@BioModuleActivity, MainActivity::class.java))
+                                    overridePendingTransition(0, 0)
+                                    finish()
                                 }
 
                                 /*

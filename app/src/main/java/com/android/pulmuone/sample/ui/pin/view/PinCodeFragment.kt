@@ -48,6 +48,7 @@ class PinCodeFragment : Fragment() {
         context?.let { viewModel.initPinCodeTitle(it) }
 
         viewModel.shouldCloseLiveData.observe(requireActivity()) {
+            requireActivity().startActivity(Intent(requireContext(), MainActivity::class.java))
             requireActivity().overridePendingTransition(0, 0)
             requireActivity().finish()
         }

@@ -39,17 +39,9 @@ class PinModuleActivity : AppCompatActivity() {
     private fun init() {
         img_cancel.let {
             it?.setOnClickListener {
-                when (pinRegistered) {
-                    KEY_INTRO -> {
-                        startActivity(Intent(this, MainActivity::class.java))
-                        overridePendingTransition(0, 0)
-                        finish()
-                    }
-                    else -> {
-                        overridePendingTransition(0, 0)
-                        finish()
-                    }
-                }
+                startActivity(Intent(this, MainActivity::class.java))
+                overridePendingTransition(0, 0)
+                finish()
             }
         }
     }
