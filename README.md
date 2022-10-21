@@ -1,4 +1,4 @@
-#* PulmuoneSimpleAuthSample_AOS
+# * PulmuoneSimpleAuthSample_AOS
 
 풀무원 간편인증 및 접근권한 샘플 앱
 - Android 기반 샘플 앱으로 간편인증(생체인증/4자리 간편번호) 및 앱 접근권한 화면과 기능 사용을 위한 소스코드 및 모듈을 제공하면 Android Studio에서 작성되었습니다.
