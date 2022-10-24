@@ -232,7 +232,7 @@ BiometricPrompt.BIOMETRIC_ERROR_USER_CANCELED -> {}
 
 /*
     The device does not have a biometric sensor.
-    */
+*/
 BiometricPrompt.BIOMETRIC_ERROR_HW_NOT_PRESENT -> {}
 
 /*
@@ -403,12 +403,13 @@ dependencies {
 ![image-1.png](./image-1.png)
 
 ```kotlin
-    # Dialog 사용방법
-    # 타이틀 제거 - 추가해서 사용 가능함
-    # _isSingleButton: Boolean - true/false로 구분해서 사용
-    # _ok, _cancel, _singleOk - 버튼 클릭 이벤트
-    # _okText, _cancelText, _singleOkText - 버튼 텍스트 설정 가능
-
+    /**
+    * Dialog 사용방법
+    * 타이틀 제거 - 추가해서 사용 가능함
+    * _isSingleButton: Boolean - true/false로 구분해서 사용
+    * _ok, _cancel, _singleOk - 버튼 클릭 이벤트
+    * _okText, _cancelText, _singleOkText - 버튼 텍스트 설정 가능
+    */
     val defaultDialog = DefaultDialog(
         this,
         title,
@@ -442,13 +443,15 @@ dependencies {
 
 - 커스텀 Toast 화면과 로직이 구현되어 있습니다.
 ```kotlin
-    # Toast 사용방법
-    # shortToast - 노출할 텍스트
-    # setTextColor - 텍스트 컬러
-    # setBackgroundColor - 백그라운드 컬러
-    # setBackgroundRadius - 모서리 둥글게 만들기
-    # setTextSize - 텍스트 사이즈
-    # setAlpha - 백그라운드 투명
+    /**
+    * Toast 사용방법
+    * shortToast - 노출할 텍스트
+    * setTextColor - 텍스트 컬러
+    * setBackgroundColor - 백그라운드 컬러
+    * setBackgroundRadius - 모서리 둥글게 만들기
+    * setTextSize - 텍스트 사이즈
+    * setAlpha - 백그라운드 투명
+    */ 
     GentleToast.with(this)
         .shortToast(str)
         .setTextColor(R.color.colorToastText)
