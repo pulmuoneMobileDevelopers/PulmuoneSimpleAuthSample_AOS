@@ -12,7 +12,7 @@ import com.android.pulmuone.sample.utils.Constants.BIO_AUTH
 import com.android.pulmuone.sample.utils.Constants.KEY_INTRO
 import com.android.pulmuone.sample.utils.Constants.SIMPLE_AUTH_STATUS
 import com.android.pulmuone.sample.utils.PreferenceManager
-import com.android.pulmuone.sample.ui.dialog.DefaultDialog
+import com.android.pulmuone.dialog.DefaultDialog
 import com.android.pulmuone.sample.ui.main.MainActivity
 import com.pulmuone.biomodule.aos.BioManager
 import com.pulmuone.biomodule.aos.interfaces.BioResult
@@ -124,7 +124,7 @@ class BioModuleActivity : AppCompatActivity() {
                     getString(R.string.bio_auth),
                     "",
                     "",
-                    getString(R.string.dialog_update_btn_no_text)
+                    getString(R.string.cancel)
                 ) { (success, errorType, errorCode, errorMsg): BioResult ->
                     Log.d("BioModuleActivity:::", "Biometrics Authentication Success:::$success")
                     Log.d("BioModuleActivity:::", "ErrorCode:::$errorCode")
@@ -321,7 +321,7 @@ class BioModuleActivity : AppCompatActivity() {
                     getString(R.string.bio_reg),
                     "",
                     "",
-                    getString(R.string.dialog_update_btn_no_text)
+                    getString(R.string.cancel)
                 ) { (success, errorType, errorCode, errorMsg): BioResult ->
                     Log.d("BioModuleActivity:::", "Biometrics Authentication Success:::$success")
                     Log.d("BioModuleActivity:::", "ErrorCode:::$errorCode")

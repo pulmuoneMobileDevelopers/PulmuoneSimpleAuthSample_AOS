@@ -58,6 +58,7 @@ dependencies {
     implementation project(path: ':permission')
     implementation project(path: ':pretendardfont')
     implementation project(path: ':biomodule')
+    implementation project(path: ':dialog')
 
     // Bio module dependencies
     implementation "androidx.biometric:biometric-ktx:1.2.0-alpha04"

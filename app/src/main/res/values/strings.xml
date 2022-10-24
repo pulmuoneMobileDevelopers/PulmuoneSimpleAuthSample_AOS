@@ -38,9 +38,6 @@
     <string name="enter_pin_number">간편비밀번호를 입력하세요.</string>
     <string name="auth_method">인증 방식</string>
 
-    <string name="dialog_update_btn_yes_text">확인</string>
-    <string name="dialog_update_btn_no_text">취소</string>
-
     <string name="bio_registered">생체정보가 등록되었습니다.</string>
     <string name="numPad_1">1</string>
     <string name="numPad_2">2</string>

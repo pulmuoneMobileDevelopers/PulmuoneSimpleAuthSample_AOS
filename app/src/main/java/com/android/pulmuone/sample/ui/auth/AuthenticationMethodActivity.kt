@@ -17,7 +17,7 @@ import com.android.pulmuone.sample.R
 import com.android.pulmuone.sample.utils.Constants.KEY_AUTH_METHOD
 import com.android.pulmuone.sample.ui.bio.BioModuleActivity
 import com.android.pulmuone.sample.ui.pin.view.PinModuleActivity
-import com.android.pulmuone.sample.ui.dialog.DefaultDialog
+import com.android.pulmuone.dialog.DefaultDialog
 import com.android.pulmuone.sample.ui.main.MainActivity
 
 class AuthenticationMethodActivity : AppCompatActivity() {

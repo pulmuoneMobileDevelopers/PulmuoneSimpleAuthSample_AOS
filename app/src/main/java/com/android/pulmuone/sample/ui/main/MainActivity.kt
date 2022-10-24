@@ -25,7 +25,7 @@ import com.android.pulmuone.sample.utils.PreferenceManager
 import com.android.pulmuone.sample.ui.bio.BioModuleActivity
 import com.android.pulmuone.sample.ui.pin.view.PinModuleActivity
 import com.android.pulmuone.sample.ui.auth.AuthenticationMethodActivity
-import com.android.pulmuone.sample.ui.dialog.DefaultDialog
+import com.android.pulmuone.dialog.DefaultDialog
 import com.android.pulmuone.sample.utils.Constants
 import com.google.android.material.snackbar.Snackbar
 import com.pulmuone.permission.*
