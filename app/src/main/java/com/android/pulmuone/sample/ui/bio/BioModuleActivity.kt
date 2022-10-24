@@ -79,17 +79,9 @@ class BioModuleActivity : AppCompatActivity() {
 
         img_cancel.let {
             it?.setOnClickListener {
-                when (bioRegistered) {
-                    KEY_INTRO -> {
-                        startActivity(Intent(this, MainActivity::class.java))
-                        overridePendingTransition(0, 0)
-                        finish()
-                    }
-                    else -> {
-                        overridePendingTransition(0, 0)
-                        finish()
-                    }
-                }
+                startActivity(Intent(this, MainActivity::class.java))
+                overridePendingTransition(0, 0)
+                finish()
             }
         }
 
@@ -145,17 +137,10 @@ class BioModuleActivity : AppCompatActivity() {
                                 .setTextSize(14)
                                 .setAlpha(153) // 60%
                                 .show()
-                            when (bioRegistered) {
-                                KEY_INTRO -> {
-                                    startActivity(Intent(this, MainActivity::class.java))
-                                    overridePendingTransition(0, 0)
-                                    finish()
-                                }
-                                else -> {
-                                    overridePendingTransition(0, 0)
-                                    finish()
-                                }
-                            }
+
+                            startActivity(Intent(this, MainActivity::class.java))
+                            overridePendingTransition(0, 0)
+                            finish()
                         }
                         else -> {
                             if(errorCode != 0
