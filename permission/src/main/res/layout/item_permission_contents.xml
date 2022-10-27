@@ -19,7 +19,7 @@
             android:id="@+id/iv_icon"
             android:layout_width="36dp"
             android:layout_height="36dp"
-            tools:src="@drawable/img_location_on"
+            tools:src="@drawable/img_vector_camera"
             android:background="@drawable/bg_circle"
             android:padding="6dp"
             app:layout_constraintBottom_toBottomOf="parent"

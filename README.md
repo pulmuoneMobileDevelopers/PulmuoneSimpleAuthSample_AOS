@@ -272,7 +272,7 @@ BiometricPrompt.BIOMETRIC_ERROR_SECURITY_UPDATE_REQUIRED -> {}
 - Android 권한 팝업
 - SnackBar
 
-![](./permission/src/main/res/drawable/img_readme2.png)
+![](./readme/scr_shot_1.png)
 
 </br></br>
 
@@ -280,7 +280,7 @@ BiometricPrompt.BIOMETRIC_ERROR_SECURITY_UPDATE_REQUIRED -> {}
 
 ### 2.2.1. permission module 프로젝트를 app 디렉토리와 동일한 경로에 붙여넣기
 
-![](./permission/src/main/res/drawable/img_readme1.png)
+![](./readme/img_readme1.png)
 
 ### 2.2.2. 프로젝트 setting.gradle 에 해당 모듈 추가코드 포함 (include ':permission')
 ```gradle
@@ -300,7 +300,14 @@ dependencies {
 </br></br>
 
 ## [ Popup Module Example Code ]
-### 2.3.1. PermissionData() 데이터 클래스로 권한 리스트 생성
+### 2.3.1. 기본 문구 세팅
+ - 퍼미션 모듈 src/res/values/strings_permissions.xml 에서 변경 가능
+![](./readme/scr_shot_2.png)
+
+### 2.4.1 퍼미션 리스트 생성
+
+
+### 2.5.1. PermissionData() 데이터 클래스로 권한 리스트 생성
 ```kotlin
     // 필수 권한 리스트
     val requireList = ArrayList<PermissionData>()
@@ -371,14 +378,18 @@ dependencies {
 | onClick                | 확인버튼 클릭 리스너      |
 
 
+</br></br>
 
+## 2.4.1. 권한 요청 프로세스 가이드
+- [자세한 권한 요청 프로세스 가이드로 이동](./readme/PermissionSampleGuide.md)
+</br></br>
 
 # 3. 간편번호인증 사용방법
 
 풀무원 간편번호인증 기능
 - 4자리 간편번호 설정 화면 제공 및 로직이 구현되어 있습니다. 간편번호 인증은 최대 5번까지 시도합니다.
 - 4자리 간편번호는 암호화 SharedPreference에 AES256으로 암호화되어 저장됩니다.
-![image.png](./image.png)
+![image.png](./readme/image.png)
 
 ## 3.1. 간편번호인증 소스파일
 ```kotlin
@@ -400,7 +411,7 @@ dependencies {
 # 4. Dialog 모듈 사용방법
 
 - 커스텀 Dialog 화면과 로직이 구현되어 있습니다.
-![image-1.png](./image-1.png)
+![image-1.png](./readme/image-1.png)
 
 ```kotlin
     /**
@@ -483,6 +494,6 @@ dependencies {
 # 7. 샘플 앱 화면
 > 다음과 같이 샘플 앱은 구현되어 있습니다.
 
-![image-2.png](./image-2.png)
-![image-3.png](./image-3.png)
-![image-4.png](./image-4.png)
+![image-2.png](./readme/image-2.png)
+![image-3.png](./readme/image-3.png)
+![image-4.png](./readme/image-4.png)

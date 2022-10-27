@@ -45,4 +45,19 @@
 
     <color name="colorBioText">#78828C</color>
     <color name="colorToolbar">#A0D911</color>
+
+    <color name="button_default">#FFA0DA11</color>
+    <color name="button_press_default">#FF90B900</color>
+    <color name="button_disable_default">#FF999999</color>
+
+
+    <color name="text_default">#FF262626</color>
+    <color name="text_main_default">#FF393939</color>
+    <color name="text_sub_default">#FF8D8D8D</color>
+
+    <color name="img_circle_color">#F5F5F5</color>
+    <color name="img_color">#919BA5</color>
+
+
+    <color name="line_color">#E1E6EB</color>
 </resources>

@@ -1,12 +1,12 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.PulmuoneSampleApp" parent="Theme.MaterialComponents.Light.NoActionBar">
+    <style name="Theme.PulmuoneSampleApp" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">#FFA0DA11</item>
-        <item name="colorPrimaryVariant">#FF90B900</item>
-        <item name="colorOnPrimary">@color/white</item>
-        <!-- Status bar color. -->
-        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
+<!--        <item name="colorPrimary">#FFA0DA11</item>-->
+<!--        <item name="colorPrimaryVariant">#FF90B900</item>-->
+<!--        <item name="colorOnPrimary">@color/white</item>-->
+<!--        &lt;!&ndash; Status bar color. &ndash;&gt;-->
+<!--        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>-->
         <!-- Customize your theme here. -->
 <!--        <item name="android:windowContentOverlay">@null</item>-->
 <!--        <item name="android:windowIsTranslucent">true</item>-->
@@ -41,6 +41,15 @@
         <item name="android:textStyle">bold</item>
         <item name="android:textSize">15dp</item>
         <item name="android:fontFamily">@font/pretendard_medium</item>
+    </style>
+
+    <style name="defaultButton" parent="@style/Widget.AppCompat.Button.Borderless">
+        <item name="android:textAllCaps">false</item>
+        <item name="android:background">@drawable/bg_btn_default</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:fontFamily">@font/pretendard_bold</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">18dp</item>
     </style>
 
 </resources>

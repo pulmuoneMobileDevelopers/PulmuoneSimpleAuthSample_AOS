@@ -1,7 +1,5 @@
 package com.pulmuone.permission
 
-import android.content.Context
-import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.FragmentManager
@@ -20,8 +18,6 @@ class PermissionFragment: BaseFixBottomSheetFragment<FragmentPermissionBinding>(
         createViewModel { PermissionViewModel() }
     }
 
-    //TODO: - 확인 버튼 등 팀장님이 공간을 좀 어떻게 하면 좋겠다고 하는데 (한번에 보이게) 혹은 버튼 비활성화 활성화. 좀생각해보기
-    // 스크롤 없이
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 

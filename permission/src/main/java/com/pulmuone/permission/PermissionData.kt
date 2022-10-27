@@ -11,9 +11,9 @@ import androidx.annotation.DrawableRes
  *
  */
 data class PermissionData(
-    @DrawableRes val iconImage: Int = R.drawable.ic_launcher_foreground,
-    val mainText: String = "",
-    val description: String = "",
+    @DrawableRes var iconImage: Int = R.drawable.img_vector_smile,
+    var mainText: String = "",
+    var description: String = "",
     val permission: String,
 )
 

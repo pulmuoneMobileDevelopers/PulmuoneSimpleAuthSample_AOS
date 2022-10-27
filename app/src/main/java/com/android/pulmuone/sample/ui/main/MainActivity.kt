@@ -38,10 +38,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var preference: SharedPreferences
 
-    private val requireList = ArrayList<PermissionData>() // 필수권한 리스트
-    private val optionalList = ArrayList<PermissionData>() // 선택권한 리스트
-
-    private lateinit var requestPermissionData: PermissionData // 유저에게 요청하고 있는 퍼미션 데이터
+    private lateinit var requestPermission: String // 유저에게 요청하고 있는 퍼미션 데이터
 
     private var defaultDialog: DefaultDialog? = null
 
@@ -90,8 +87,9 @@ class MainActivity : AppCompatActivity() {
 
         preference = getPreferences(Context.MODE_PRIVATE)
 
-        setPermissionList()
         setButtonEvent()
+
+        // 권한 안내 팝업 호출
         showOneTimeNoticePopup {
             startPermissionLoop(0)
         }
@@ -102,105 +100,37 @@ class MainActivity : AppCompatActivity() {
         showToast("필수권한 모두 허용 상태 다음 동작이 있으면 수행")
     }
 
-    // 권한 목록 리스트 세팅
-    private fun setPermissionList() {
-        // 필수 권한 리스트
-        requireList.add(
-            PermissionData(
-                iconImage = com.pulmuone.permission.R.drawable.img_contacts,
-                mainText = "스마트폰 내 연락처",
-                description = "연락처를 사용하여 친구에게 추천합니다.",
-                permission = Manifest.permission.READ_CONTACTS,
-            )
-        )
-        requireList.add(
-            PermissionData(
-                iconImage = com.pulmuone.permission.R.drawable.img_location_on,
-                mainText = "기기 및 앱 기록",
-                description = "통계, 푸시발송, 오류 정보 확인",
-                permission = Manifest.permission.ACCESS_FINE_LOCATION,
-            )
-        )
-        requireList.add(
-            PermissionData(
-                iconImage = com.pulmuone.permission.R.drawable.img_call,
-                mainText = "전화",
-                description = "앱에서 직접 전화를 걸 수 있습니다.",
-                permission = Manifest.permission.CALL_PHONE,
-            )
-        )
-        requireList.add(
-            PermissionData(
-                iconImage = com.pulmuone.permission.R.drawable.img_file,
-                mainText = "파일 및 미디어",
-                description = "파일을 내부에 저장하기 위해 사용합니다.",
-                permission = Manifest.permission.READ_EXTERNAL_STORAGE,
-            )
-        )
-        requireList.add(
-            PermissionData(
-                iconImage = com.pulmuone.permission.R.drawable.img_file_download,
-                mainText = "출처를 알 수 없는 앱",
-                description = "앱 설치를 위해 필요합니다.",
-                permission = PermissionConstants.UNKNOWN_ALLOW_INSTALL,
-            )
-        )
-
-        // 선택 권한 리스트
-        optionalList.add(
-            PermissionData(
-                iconImage = com.pulmuone.permission.R.drawable.img_call_log,
-                mainText = "전화 기록 읽기",
-                description = "전화 내역을 확인하고 수집합니다.",
-                permission = Manifest.permission.READ_CALL_LOG,
-            )
-        )
-        optionalList.add(
-            PermissionData(
-                iconImage = com.pulmuone.permission.R.drawable.img_photo_camera,
-                mainText = "카메라 및 촬영",
-                description = "찰칵 찰칵 여러 사진을 찍습니다.",
-                permission = Manifest.permission.CAMERA,
-            )
-        )
-    }
-
     // 버튼 리스너 등록
     private fun setButtonEvent() {
         binding.apply {
             btContact.setOnClickListener {
-                if (requestRequirePermission(requireList[0])) {
-                    showToast("연락처 정상 가동")
+                if (requestRequirePermission(Manifest.permission.READ_CONTACTS)) {
+                    showToast("연락처 읽기 정상 가동")
                 }
             }
             btLocation.setOnClickListener {
-                if (requestRequirePermission(requireList[1])) {
-                    showToast("위치 정상 가동")
+                if (requestRequirePermission(Manifest.permission.ACCESS_FINE_LOCATION)) {
+                    showToast("위치 정보 정상 가동")
                 }
             }
             btCellPhone.setOnClickListener {
-                if (requestRequirePermission(requireList[2])) {
-                    showToast("통화 정상 가동")
+                if (requestRequirePermission(Manifest.permission.CALL_PHONE)) {
+                    showToast("통화 걸기 정상 가동")
                 }
             }
             btFile.setOnClickListener {
-                if (requestRequirePermission(requireList[3])) {
-                    showToast("파일및 미디어 정상 가동")
+                if (requestRequirePermission(Manifest.permission.READ_EXTERNAL_STORAGE)) {
+                    showToast("내부저장소 파일 읽기 정상 가동")
                 }
             }
             btUnknownAllow.setOnClickListener {
-                if (requestRequirePermission(requireList[4])) {
+                if (requestRequirePermission(PermissionConstants.UNKNOWN_ALLOW_INSTALL)) {
                     showToast("출처를 알 수 없는 앱 허용")
                 }
             }
 
-            btCallLog.setOnClickListener {
-                if (requestOptionalPermission(optionalList[0])) {
-                    showToast("통화기록 정상 가동")
-                }
-            }
             btCamera.setOnClickListener {
-                if (requestOptionalPermission(optionalList[1])) {
+                if (requestOptionalPermission(Manifest.permission.CAMERA)) {
                     showToast("카메라 정상 가동")
                 }
             }
@@ -249,7 +179,7 @@ class MainActivity : AppCompatActivity() {
      * @param afterAction 함수가 끝난 후 동작할 액션 블록
      */
     private fun showOneTimeNoticePopup( afterAction: () -> Unit ) {
-        if (!isPermissionAllGranted(requireList)) {
+        if (!isPermissionAllGranted(requirePermissionArray)) {
             showNoticeBottomSheet {
                 afterAction.invoke()
             }
@@ -257,6 +187,7 @@ class MainActivity : AppCompatActivity() {
             afterAction.invoke()
         }
 
+        //FIXME: - 앱 켜지고 딱 한번만 호출하고 싶은경우는 아래 로직 사용
 //        val isFirst = preference.getBoolean(isFirstShowPermissionPopup, true)
 //        if (isFirst) {
 //            preference.edit().putBoolean(isFirstShowPermissionPopup, false).apply()
@@ -273,8 +204,8 @@ class MainActivity : AppCompatActivity() {
      * 필수 권한 Loop 시작
      */
     private fun startPermissionLoop(count: Int) {
-        if (count < requireList.size) {
-            requestRequirePermission(requireList[count])
+        if (count < requirePermissionArray.size) {
+            requestRequirePermission(requirePermissionArray[count])
         } else {
             completeAllGrant()
         }
@@ -284,19 +215,19 @@ class MainActivity : AppCompatActivity() {
      * (필수 권한) 권한 허용 여부를 묻고, 허용 요청함
      * 필수의 경우는 두번 까지 팝업으로 요청 후 거절 시에 앱을 종료시킨다.
      */
-    private fun requestRequirePermission(data: PermissionData): Boolean {
-        requestPermissionData = data
-        return when(getGrantedStatus(data.permission, preference)){
+    private fun requestRequirePermission(permission: String): Boolean {
+        requestPermission = permission
+        return when(getGrantedStatus(permission, preference)){
             PermissionStatus.FIRST, PermissionStatus.SECOND -> {
-                requireResult.launch(data.permission)
+                requireResult.launch(permission)
                 false
             }
             PermissionStatus.DENY -> {
-                deniedRequirePermission(data)
+                deniedRequirePermission(permission)
                 false
             }
             PermissionStatus.GRANT -> {
-                startPermissionLoop(requireList.indexOf(data) + 1)
+                startPermissionLoop(requirePermissionArray.indexOf(permission) + 1)
                 true
             }
         }
@@ -304,22 +235,22 @@ class MainActivity : AppCompatActivity() {
     // 필수 권한 요청 result
     private val requireResult =
         registerForActivityResult(ActivityResultContracts.RequestPermission()) {
-            requestRequirePermission(requestPermissionData)
+            requestRequirePermission(requestPermission)
         }
 
     /**
      * (선택 권한) 권한 허용 여부를 묻고, 허용 요청함
      * 선택의 경우는 한번만 물어보고 그 다음부터는 SnackBar 로 대체
      */
-    private fun requestOptionalPermission(data: PermissionData): Boolean {
-        requestPermissionData = data
-        return when(getGrantedStatus(data.permission, preference)){
+    private fun requestOptionalPermission(permission: String): Boolean {
+        requestPermission = permission
+        return when(getGrantedStatus(permission, preference)){
             PermissionStatus.FIRST -> {
-                optionalResult.launch(data.permission)
+                optionalResult.launch(permission)
                 false
             }
             PermissionStatus.SECOND, PermissionStatus.DENY -> {
-                showSnackBar(data)
+                showSnackBar(permission)
                 false
             }
             PermissionStatus.GRANT -> true
@@ -328,30 +259,39 @@ class MainActivity : AppCompatActivity() {
     // 선택 권한 요청 result
     private val optionalResult =
         registerForActivityResult(ActivityResultContracts.RequestPermission()) {
-            requestOptionalPermission(requestPermissionData)
+            requestOptionalPermission(requestPermission)
         }
 
     /**
      * 필수 권한 모두 거부 시
      */
-    private fun deniedRequirePermission(data: PermissionData) {
-        if (data.permission == PermissionConstants.UNKNOWN_ALLOW_INSTALL) {
-            showAlertDialog(
-                title = "[출처를 알 수 없는 앱 설치]",
-                msg = "출처를 알수 없는 앱 설치를 허용해야 서비스가 정상 이용이 가능합니다. 허용 항목으로 이동합니다.",
-                posiBtn = "설정",
-            ) {
-                moveAllowUnknownSetting()
-                finish()
+    private fun deniedRequirePermission(permission: String) {
+        when (permission) {
+            PermissionConstants.UNKNOWN_ALLOW_INSTALL -> {
+                showAlertDialog(
+                    title = "[출처를 알 수 없는 앱 설치]",
+                    msg = "출처를 알수 없는 앱 설치를 허용해야 서비스가 정상 이용이 가능합니다. 허용 항목으로 이동합니다.",
+                    posiBtn = "설정",
+                ) {
+                    moveAllowUnknownSetting()
+                    finish()
+                }
             }
-        } else {
-            showAlertDialog(
-                title = "[필수권한 허용 요청]",
-                msg = "필수 권한을 허용해야 서비스가 정상 이용이 가능합니다. 권한 요청시 반드시 허용해 주세요.\n\n 필수권한 [${data.mainText}]",
-                posiBtn = "확인",
-            ) {
-                setDetailSettingIntent()
-                finish()
+            PermissionConstants.APP_UP_APP -> {
+                //TODO: - 구현하기
+            }
+            PermissionConstants.PICTURE_IN_PICTURE -> {
+                //TODO: - 구현하기
+            }
+            else -> {
+                showAlertDialog(
+                    title = "[필수권한 허용 요청]",
+                    msg = "필수 권한을 허용해야 서비스가 정상 이용이 가능합니다. 권한 요청시 반드시 허용해 주세요.\n\n 필수권한 [${this.defaultPermissionData(permission).mainText}]",
+                    posiBtn = "확인",
+                ) {
+                    setDetailSettingIntent()
+                    finish()
+                }
             }
         }
     }
@@ -378,6 +318,30 @@ class MainActivity : AppCompatActivity() {
      * 권한 안내 bottomSheet Show
      */
     private fun showNoticeBottomSheet(afterAction: () -> Unit) {
+
+        val requireList = ArrayList<PermissionData>() // 필수권한 리스트
+        val optionalList = ArrayList<PermissionData>() // 선택권한 리스트
+        classifyPermissionGroup(requirePermissionArray).forEach {
+            requireList.add(
+                this.defaultPermissionData(it)
+            )
+        }
+        classifyPermissionGroup(optionalPermissionArray, requirePermissionArray).forEach {
+            optionalList.add(
+                this.defaultPermissionData(it)
+            )
+        }
+        // 선택 권한 리스트에 빈 내용 추가
+        optionalList.add(
+            PermissionData(
+                iconImage = com.pulmuone.permission.R.drawable.img_vector_smile,
+                mainText = "그냥 알림",
+                description = "그냥 안내하고 싶을 때는 이렇게 추가로 사용",
+                permission = PermissionConstants.PASS_PERMISSION
+            )
+        )
+
+        // 권한 안내 팝업 호출
         PermissionFragment().showBottomSheet(
             supportFragmentManager,
             PermissionFragmentData(
@@ -404,13 +368,22 @@ class MainActivity : AppCompatActivity() {
     }
 
     // SnackBar 호출
-    private fun showSnackBar(data: PermissionData) {
-        val snackBar = Snackbar.make(binding.clMainView, data.mainText + " 권한 요청을 허용해주세요.", Snackbar.LENGTH_LONG)
+    private fun showSnackBar(permission: String) {
+        val snackBar = Snackbar.make(binding.clMainView, this.defaultPermissionData(permission).mainText + " 권한 요청을 허용해주세요.", Snackbar.LENGTH_LONG)
         snackBar.setAction("설정") {
-            if (data.permission == PermissionConstants.UNKNOWN_ALLOW_INSTALL) {
-                moveAllowUnknownSetting()
-            } else {
-                setDetailSettingIntent()
+            when (permission) {
+                PermissionConstants.UNKNOWN_ALLOW_INSTALL -> {
+                    moveAllowUnknownSetting()
+                }
+                PermissionConstants.APP_UP_APP -> {
+                    //TODO: - 구현하기
+                }
+                PermissionConstants.PICTURE_IN_PICTURE -> {
+                    //TODO: - 구현하기
+                }
+                else -> {
+                    setDetailSettingIntent()
+                }
             }
         }
         snackBar.show()
@@ -420,5 +393,27 @@ class MainActivity : AppCompatActivity() {
         private const val TAG = "PermissionActivity"
 
         private const val isFirstShowPermissionPopup = "isFirstShowPermissionPopup" // 최초 권한 안내 팝업
+
+        /**
+         * 필수 권한 리스트
+         * */
+        private val requirePermissionArray: Array<String> = arrayOf(
+            Manifest.permission.READ_CONTACTS,
+            Manifest.permission.WRITE_CONTACTS,
+            Manifest.permission.ACCESS_FINE_LOCATION,
+            Manifest.permission.ACCESS_COARSE_LOCATION,
+            Manifest.permission.SEND_SMS,
+            Manifest.permission.CALL_PHONE,
+            PermissionConstants.UNKNOWN_ALLOW_INSTALL,
+        )
+
+        /**
+         * 선택 권한 리스트
+         * */
+        private val optionalPermissionArray: Array<String> = arrayOf(
+            Manifest.permission.READ_CALL_LOG,
+            Manifest.permission.CAMERA,
+            Manifest.permission.RECEIVE_MMS,
+        )
     }
 }

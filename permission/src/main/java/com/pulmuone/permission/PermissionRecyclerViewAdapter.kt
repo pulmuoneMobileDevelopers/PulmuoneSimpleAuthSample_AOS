@@ -95,7 +95,7 @@ data class PermissionAdaptorData(
     val mainText: String? = "",
     val subText: String? = "",
     val settingText: String? = "",
-    @DrawableRes val iconImage: Int = R.drawable.ic_launcher_foreground,
+    @DrawableRes val iconImage: Int = R.drawable.img_vector_smile,
 )
 
 enum class PermissionAdaptorItemType {

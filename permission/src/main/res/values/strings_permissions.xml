@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Contacts -->
+    <string name="permissions_title_contacts">스마트폰 내 연락처</string>
+    <string name="permissions_description_contacts">연락처를 사용하여 친구에게 추천</string>
+
+    <!-- Call -->
+    <string name="permissions_title_call">전화</string>
+    <string name="permissions_description_call">앱에서 직접 전화 연결 및 전화 기록 읽기</string>
+
+    <!-- Camera -->
+    <string name="permissions_title_camera">카메라 및 촬영</string>
+    <string name="permissions_description_camera">사진 및 동영상 촬영</string>
+
+    <!-- GPS -->
+    <string name="permissions_title_gps">GPS 위치정보</string>
+    <string name="permissions_description_gps">단말기의 위치정보 기능 사용</string>
+
+    <!-- Calendar -->
+    <string name="permissions_title_calendar">캘린더</string>
+    <string name="permissions_description_calendar">일정 보여주기 및 작성</string>
+
+    <!-- Audio Record -->
+    <string name="permissions_title_voice_record">음성녹음</string>
+    <string name="permissions_description_voice_record">단말기의 녹음 기능 사용</string>
+
+    <!-- File Storage -->
+    <string name="permissions_title_file">파일 및 미디어</string>
+    <string name="permissions_description_file">파일 내부에 저장 및 가져오기</string>
+
+    <!-- SMS -->
+    <string name="permissions_title_sms">SMS</string>
+    <string name="permissions_description_sms">메세지 확인 및 전송</string>
+
+    <!-- Bluetooth -->
+    <string name="permissions_title_bluetooth">블루투스</string>
+    <string name="permissions_description_bluetooth">블루투스 기기 연결</string>
+
+    <!-- Unknown App -->
+    <string name="permissions_title_unknown_app">출처를 알 수 없는 앱</string>
+    <string name="permissions_description_unknown_app">앱 설치를 위해 필요</string>
+
+    <!-- App 위에 그리기 -->
+    <string name="permissions_title_app_up_app">앱 위에 그리기</string>
+    <string name="permissions_description_app_up_app">해당 앱이 다른 앱보다 항상 위에 표시</string>
+
+    <!-- PIP -->
+    <string name="permissions_title_pip">사진 속 사진(PIP)</string>
+    <string name="permissions_description_pip">사진 속 사진 창</string>
+
+
+
+    <!-- 미사용 -->
+    <string name="permissions_title_noti">알림</string>
+    <string name="permissions_description_noti">앱 알림 허용</string>
+    <string name="permissions_title_finger_print">생체인증</string>
+    <string name="permissions_description_finger_print">지문, 얼굴 등 로그인 연동</string>
+    <string name="permissions_title_body_action">신체 활동</string>
+    <string name="permissions_description_body_action">걸음 수, 활동상태</string>
+    <string name="permissions_title_motion_sensor">모션 센서</string>
+    <string name="permissions_description_motion_sensor">모션 감지</string>
+
+</resources>

@@ -12,13 +12,13 @@
 
         <TextView
             android:id="@+id/main_title"
-            android:text="@string/title"
-            android:fontFamily="@font/pretendard_bold"
-            android:textSize="32sp"
-            android:textColor="@color/black"
-            android:layout_marginTop="50dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:fontFamily="@font/pretendard_bold"
+            android:text="@string/title"
+            android:textColor="@color/black"
+            android:textSize="32sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -28,10 +28,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="30dp"
+            android:layout_marginTop="30dp"
             android:fontFamily="@font/pretendard_medium"
             android:text="간편인증"
             android:textSize="18dp"
-            android:layout_marginTop="30dp"
             app:layout_constraintBottom_toTopOf="@+id/btnTest"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -39,33 +39,25 @@
 
         <Button
             android:id="@+id/btnTest"
-            style="@style/SampleButton"
-            android:layout_marginHorizontal="30dp"
-            android:fontFamily="@font/pretendard_medium"
-            android:text="@string/simple_auth"
-            android:textSize="18dp"
+            style="@style/defaultButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/colorPrimary"
-            android:textColor="@color/white"
+            android:layout_marginHorizontal="30dp"
             android:layout_marginTop="10dp"
+            android:text="@string/simple_auth"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/main_sub_title" />
 
         <Button
             android:id="@+id/btnReset"
-            style="@style/SampleButton"
-            android:layout_marginHorizontal="30dp"
-            android:fontFamily="@font/pretendard_medium"
-            android:text="@string/pin_code_clear"
-            android:textSize="18sp"
-            android:layout_below="@+id/btnTest"
+            style="@style/defaultButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/colorPrimary"
-            android:textColor="@color/white"
+            android:layout_below="@+id/btnTest"
+            android:layout_marginHorizontal="30dp"
             android:layout_marginTop="10dp"
+            android:text="@string/pin_code_clear"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/btnTest" />
@@ -73,75 +65,74 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
             android:orientation="vertical"
             android:paddingHorizontal="30dp"
-            android:layout_marginTop="30dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/btnReset">
 
 
             <TextView
-                android:fontFamily="@font/pretendard_medium"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/pretendard_medium"
                 android:text="필수권한"
                 android:textSize="18dp" />
 
             <Button
                 android:id="@+id/bt_contact"
-                style="@style/SampleButton"
+                style="@style/defaultButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
                 android:text="연락처" />
 
             <Button
                 android:id="@+id/bt_location"
-                style="@style/SampleButton"
+                style="@style/defaultButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
                 android:text="위치" />
 
             <Button
                 android:id="@+id/bt_cell_phone"
-                style="@style/SampleButton"
+                style="@style/defaultButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
                 android:text="전화" />
 
             <Button
                 android:id="@+id/bt_file"
-                style="@style/SampleButton"
+                style="@style/defaultButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
                 android:text="파일 및 미디어" />
 
             <Button
                 android:id="@+id/bt_unknown_allow"
-                style="@style/SampleButton"
+                style="@style/defaultButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
                 android:text="출처를 알수없는 앱 허용" />
 
             <TextView
-                android:fontFamily="@font/pretendard_medium"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/pretendard_medium"
                 android:text="선택권한"
                 android:textSize="18dp" />
 
             <Button
-                android:id="@+id/bt_call_log"
-                style="@style/SampleButton"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="전화기록 읽기" />
-
-            <Button
                 android:id="@+id/bt_camera"
-                style="@style/SampleButton"
+                style="@style/defaultButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
                 android:text="카메라 및 촬영" />
 
         </LinearLayout>
