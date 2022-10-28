@@ -227,6 +227,7 @@ class MainActivity : AppCompatActivity() {
                 false
             }
             PermissionStatus.GRANT -> {
+                // 필수 권한의 경우, 권한이 허용되면 다음 필수 권한을 처리하게 등록
                 startPermissionLoop(requirePermissionArray.indexOf(permission) + 1)
                 true
             }
@@ -270,7 +271,7 @@ class MainActivity : AppCompatActivity() {
             PermissionConstants.UNKNOWN_ALLOW_INSTALL -> {
                 showAlertDialog(
                     title = "[출처를 알 수 없는 앱 설치]",
-                    msg = "출처를 알수 없는 앱 설치를 허용해야 서비스가 정상 이용이 가능합니다. 허용 항목으로 이동합니다.",
+                    msg = "출처를 알수 없는 앱 설치 권한을 허용해야 서비스가 정상 이용이 가능합니다. 허용 항목으로 이동합니다.",
                     posiBtn = "설정",
                 ) {
                     moveAllowUnknownSetting()
@@ -278,10 +279,17 @@ class MainActivity : AppCompatActivity() {
                 }
             }
             PermissionConstants.APP_UP_APP -> {
-                //TODO: - 구현하기
+                showAlertDialog(
+                    title = "[다른 앱 위에 그리기]",
+                    msg = "다른 앱 위에 그리기 권한을 허용해야 서비스가 정상 이용이 가능합니다. 허용 항목으로 이동합니다.",
+                    posiBtn = "설정",
+                ) {
+                    moveAllowAppUpAppSetting()
+                    finish()
+                }
             }
             PermissionConstants.PICTURE_IN_PICTURE -> {
-                //TODO: - 구현하기
+                // 권한 필요 없음
             }
             else -> {
                 showAlertDialog(
@@ -376,10 +384,10 @@ class MainActivity : AppCompatActivity() {
                     moveAllowUnknownSetting()
                 }
                 PermissionConstants.APP_UP_APP -> {
-                    //TODO: - 구현하기
+                    moveAllowAppUpAppSetting()
                 }
                 PermissionConstants.PICTURE_IN_PICTURE -> {
-                    //TODO: - 구현하기
+                    // 권한 필요 없음
                 }
                 else -> {
                     setDetailSettingIntent()
@@ -405,6 +413,8 @@ class MainActivity : AppCompatActivity() {
             Manifest.permission.SEND_SMS,
             Manifest.permission.CALL_PHONE,
             PermissionConstants.UNKNOWN_ALLOW_INSTALL,
+            PermissionConstants.APP_UP_APP,
+            PermissionConstants.PICTURE_IN_PICTURE,
         )
 
         /**

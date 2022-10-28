@@ -9,8 +9,11 @@ import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Build
 import android.provider.Settings
+import android.view.View
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import com.android.pulmuone.dialog.DefaultDialog
+import com.google.android.material.snackbar.Snackbar
 
 /**
  * 권한 리스트 전체 허용이 되어있는지 여부
@@ -24,13 +27,15 @@ fun Context.isPermissionAllGranted(list: Array<String>): Boolean {
                 }
             }
             it == PermissionConstants.APP_UP_APP -> {
-                //TODO: - 기능 구현하기
+                if (!isAllowAppUpApp()) {
+                    return false
+                }
             }
             it == PermissionConstants.PICTURE_IN_PICTURE -> {
-                //TODO: - 기능 구현하기
+                // 그냥 통과
             }
             it == PermissionConstants.PASS_PERMISSION -> {
-
+                // 그냥 통과
             }
             ActivityCompat.checkSelfPermission(this, it) != PackageManager.PERMISSION_GRANTED -> {
                 return false
@@ -73,7 +78,7 @@ fun ArrayList<PermissionData>.changeStringArray(): Array<String> {
 /**
  * 앱 상세 설정 이동 인텐트 정보
  */
-fun Activity.setDetailSettingIntent() {
+fun Context.setDetailSettingIntent() {
     val intent = Intent()
     intent.action = Settings.ACTION_APPLICATION_DETAILS_SETTINGS
     intent.data = Uri.fromParts("package", packageName, null)
@@ -92,11 +97,12 @@ fun Activity.getGrantedStatus(permission: String, preference: SharedPreferences)
             }
         }
         PermissionConstants.APP_UP_APP -> {
-            //TODO: - 기능 구현하기
-            return PermissionStatus.GRANT
+            return when (isAllowAppUpApp()) {
+                true -> PermissionStatus.GRANT
+                false -> PermissionStatus.DENY
+            }
         }
         PermissionConstants.PICTURE_IN_PICTURE -> {
-            //TODO: - 기능 구현하기
             return PermissionStatus.GRANT
         }
         PermissionConstants.PASS_PERMISSION -> {
@@ -145,7 +151,7 @@ fun Context.isAllowUnknownApp(): Boolean {
 /**
  * 출처를 알수없는 앱 허용 설정 화면으로 이동
  */
-fun Activity.moveAllowUnknownSetting() {
+fun Context.moveAllowUnknownSetting() {
     // 오레오(8.0) 이전
     if (Build.VERSION.SDK_INT < 26) {
         startActivity(Intent(Settings.ACTION_SECURITY_SETTINGS))
@@ -157,6 +163,47 @@ fun Activity.moveAllowUnknownSetting() {
         startActivity(intent)
     }
 }
+
+/**
+ * 다른 앱 위에 그리기 허용 되어 있는지 체크
+ */
+fun Context.isAllowAppUpApp(): Boolean {
+    return Settings.canDrawOverlays(this)
+}
+
+/**
+ * 다른 앱 위에 그리기 허용 설정 화면으로 이동
+ */
+fun Context.moveAllowAppUpAppSetting() {
+    val intent = Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION)
+    intent.data = Uri.parse("package:$packageName")
+    startActivity(intent)
+}
+
+/**
+ * SnackBar 호출
+ * */
+fun Context.showSnackBar(view: View, permission: String) {
+    val snackBar = Snackbar.make(view, this.defaultPermissionData(permission).mainText + " 권한 요청을 허용해주세요.", Snackbar.LENGTH_LONG)
+    snackBar.setAction("설정") {
+        when (permission) {
+            PermissionConstants.UNKNOWN_ALLOW_INSTALL -> {
+                moveAllowUnknownSetting()
+            }
+            PermissionConstants.APP_UP_APP -> {
+                moveAllowAppUpAppSetting()
+            }
+            PermissionConstants.PICTURE_IN_PICTURE -> {
+                // 권한 필요 없음
+            }
+            else -> {
+                setDetailSettingIntent()
+            }
+        }
+    }
+    snackBar.show()
+}
+
 
 /**
  * 그룹 퍼미션 명 가져오기
@@ -208,7 +255,11 @@ fun isSamePermissionGroup(permissionA: String, permissionB: String): Boolean {
             }
         }
     }
-    return groupA == groupB
+    // 하나라도 그룹권한에 속하지 않는게 있으면 다른 퍼미션 그룹이라고 처리한다
+    return if (groupA == "" || groupB == "")
+        false
+    else
+        groupA == groupB
 }
 
 /**
@@ -336,9 +387,9 @@ fun Context.defaultPermissionData(permission: String): PermissionData {
                     // 센서
                     Manifest.permission_group.SENSORS -> {
                         return PermissionData(
-                            iconImage = R.drawable.img_vector_body_action,
-                            mainText = this.getString(R.string.permissions_title_body_action),
-                            description = this.getString(R.string.permissions_description_body_action),
+                            iconImage = R.drawable.img_vector_motion_sensor,
+                            mainText = this.getString(R.string.permissions_title_sensor),
+                            description = this.getString(R.string.permissions_description_sensor),
                             permission = permission,
                         )
                     }
@@ -374,21 +425,19 @@ fun Context.defaultPermissionData(permission: String): PermissionData {
             permission = permission,
         )
     }
-    //TODO: - 이미지 추가하기
     // 앱 위에 그리기
     if (permission == PermissionConstants.APP_UP_APP) {
         return PermissionData(
-            iconImage = R.drawable.img_vector_smile,
+            iconImage = R.drawable.img_vector_app_up_app,
             mainText = this.getString(R.string.permissions_title_app_up_app),
             description = this.getString(R.string.permissions_description_app_up_app),
             permission = permission,
         )
     }
-    //TODO: - 이미지 추가하기
     // 그림 속 그림
     if (permission == PermissionConstants.PICTURE_IN_PICTURE) {
         return PermissionData(
-            iconImage = R.drawable.img_vector_smile,
+            iconImage = R.drawable.img_vector_pip,
             mainText = this.getString(R.string.permissions_title_pip),
             description = this.getString(R.string.permissions_description_pip),
             permission = permission,
