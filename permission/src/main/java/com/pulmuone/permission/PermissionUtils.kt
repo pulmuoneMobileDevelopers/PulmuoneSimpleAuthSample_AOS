@@ -12,7 +12,6 @@ import android.provider.Settings
 import android.view.View
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import com.android.pulmuone.dialog.DefaultDialog
 import com.google.android.material.snackbar.Snackbar
 
 /**
