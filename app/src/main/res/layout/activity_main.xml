@@ -14,7 +14,7 @@
             android:id="@+id/main_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="30dp"
             android:fontFamily="@font/pretendard_bold"
             android:text="@string/title"
             android:textColor="@color/black"
@@ -28,7 +28,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="30dp"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="20dp"
             android:fontFamily="@font/pretendard_medium"
             android:text="간편인증"
             android:textSize="18dp"
@@ -56,16 +56,17 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/btnTest"
             android:layout_marginHorizontal="30dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="4dp"
             android:text="@string/pin_code_clear"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/btnTest" />
 
         <LinearLayout
+            android:id="@+id/permission_sub_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="20dp"
             android:orientation="vertical"
             android:paddingHorizontal="30dp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -136,6 +137,32 @@
                 android:text="카메라 및 촬영" />
 
         </LinearLayout>
+
+        <TextView
+            android:id="@+id/main_sub_title_apkinstall"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="30dp"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/pretendard_medium"
+            android:text="Apk Install"
+            android:textSize="18dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/permission_sub_title"  />
+
+        <Button
+            android:id="@+id/btnApkInstall"
+            style="@style/defaultButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="30dp"
+            android:layout_marginTop="10dp"
+            android:text="@string/apk_install"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/main_sub_title_apkinstall" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

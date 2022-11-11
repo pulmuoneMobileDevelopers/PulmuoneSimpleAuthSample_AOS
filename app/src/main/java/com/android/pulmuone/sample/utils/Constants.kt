@@ -16,4 +16,6 @@ object Constants {
     const val AUTH_MAX_FAIL_COUNT = 5                                   // 간편비밀번호 최대 실패 횟수
     const val BIO_AUTH = "bio"                                          // 생체 인증
     const val PIN_AUTH = "pin"                                          // 간편비밀번호 인증
+
+    const val MY_PERMISSION_REQUEST_WRITE_EXTERNAL_STORAGE = 1001
 }

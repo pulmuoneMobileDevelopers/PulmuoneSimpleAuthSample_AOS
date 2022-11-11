@@ -10,13 +10,17 @@ import com.android.pulmuone.sample.utils.Constants.KEY_PIN_CODE_EMPTY
 import com.android.pulmuone.sample.utils.Constants.PIN_AUTH
 import com.android.pulmuone.sample.utils.Constants.PIN_CODE_STATUS
 import com.android.pulmuone.sample.utils.Constants.SIMPLE_AUTH_STATUS
+import com.android.pulmuone.sample.utils.Constants.MY_PERMISSION_REQUEST_WRITE_EXTERNAL_STORAGE
 
 import android.content.Intent
 import android.content.SharedPreferences
+import android.content.pm.PackageManager
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
 import androidx.databinding.DataBindingUtil
 import com.android.pulmuone.sample.R
 import com.android.pulmuone.sample.databinding.ActivityMainBinding
@@ -28,6 +32,7 @@ import com.android.pulmuone.sample.ui.auth.AuthenticationMethodActivity
 import com.android.pulmuone.dialog.DefaultDialog
 import com.android.pulmuone.sample.utils.Constants
 import com.google.android.material.snackbar.Snackbar
+import com.pulmuone.apkinstall.ApkInstall
 import com.pulmuone.permission.*
 import com.pulmuone.toast.aos.GentleToast
 
@@ -169,6 +174,14 @@ class MainActivity : AppCompatActivity() {
                 startActivity(Intent(this@MainActivity, AuthenticationMethodActivity::class.java))
                 overridePendingTransition(0, 0)
                 finish()
+            }
+            btnApkInstall.setOnClickListener {
+//                showToast("준비중...")
+                // First check the external storage permission
+                val isTrue = ApkInstall.checkAppFromUnknownSource(this@MainActivity)
+                if (isTrue) {
+                    checkWriteExternalStoragePermission()
+                }
             }
         }
     }
@@ -425,5 +438,58 @@ class MainActivity : AppCompatActivity() {
             Manifest.permission.CAMERA,
             Manifest.permission.RECEIVE_MMS,
         )
+    }
+
+    private fun checkWriteExternalStoragePermission() {
+        if (ActivityCompat.checkSelfPermission(
+                this@MainActivity,
+                Manifest.permission.WRITE_EXTERNAL_STORAGE
+            ) == PackageManager.PERMISSION_GRANTED
+        ) {
+            // If we have permission than we can Start the Download the task
+            downloadTask()
+        } else {
+            //  If we don't have permission than requesting  the permission
+            requestWriteExternalStoragePermission()
+        }
+    }
+
+    private fun requestWriteExternalStoragePermission() {
+        if (ActivityCompat.checkSelfPermission(
+                this@MainActivity,
+                Manifest.permission.WRITE_EXTERNAL_STORAGE
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
+            ActivityCompat.requestPermissions(
+                this@MainActivity,
+                arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE),
+                MY_PERMISSION_REQUEST_WRITE_EXTERNAL_STORAGE
+            )
+        } else {
+            ActivityCompat.requestPermissions(
+                this@MainActivity,
+                arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE),
+                MY_PERMISSION_REQUEST_WRITE_EXTERNAL_STORAGE
+            )
+        }
+    }
+
+    private fun downloadTask() {
+        val downloadURL = "https://download.pulmuone.com/mfcs/android/mFCS-release.apk"
+        val fileName = "mFCS-release"
+        ApkInstall.downloadApkAndInstall(this, downloadURL, fileName)
+    }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if (requestCode == MY_PERMISSION_REQUEST_WRITE_EXTERNAL_STORAGE && grantResults.size == 1 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+            downloadTask()
+        } else {
+            Toast.makeText(this@MainActivity, "Permission Not Granted.", Toast.LENGTH_SHORT).show()
+        }
     }
 }

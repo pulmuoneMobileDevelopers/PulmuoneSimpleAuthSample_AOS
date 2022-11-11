@@ -52,4 +52,6 @@
 
     <string name="permission">권한</string>
     <string name="permission_toolbar">모바일 앱 권한 요청 샘플 프로젝트</string>
+
+    <string name="apk_install">Download</string>
 </resources>
