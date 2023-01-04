@@ -4,16 +4,13 @@ import android.content.SharedPreferences
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 
-class PinCodeViewModelFactory(
-    private val sharedPreferences: SharedPreferences
-) :
-    ViewModelProvider.Factory {
+class PinCodeViewModelFactory : ViewModelProvider.Factory {
 
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         @Suppress("UNCHECKED_CAST")
 
         if(modelClass.isAssignableFrom(PinCodeViewModel::class.java)) {
-            return PinCodeViewModel(sharedPreferences) as T
+            return PinCodeViewModel() as T
         }
         throw IllegalArgumentException("Unknown ViewModel class")
     }

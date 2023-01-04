@@ -50,6 +50,12 @@
     <string name="numPad_9">9</string>
     <string name="numPad_0">0</string>
 
+    <string name="five_per_one">(1/5)</string>
+    <string name="five_per_two">(2/5)</string>
+    <string name="five_per_three">(3/5)</string>
+    <string name="five_per_four">(4/5)</string>
+    <string name="five_per_five">(5/5)</string>
+
     <string name="permission">권한</string>
     <string name="permission_toolbar">모바일 앱 권한 요청 샘플 프로젝트</string>
 

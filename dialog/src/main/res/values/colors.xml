@@ -8,5 +8,6 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="colorText">#262626</color>
-
+    <color name="colorDialogOkText">#FFFFFF</color>
+    <color name="colorDialogCancelText">#AAB4BE</color>
 </resources>

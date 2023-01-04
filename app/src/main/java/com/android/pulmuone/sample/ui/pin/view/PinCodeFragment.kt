@@ -13,7 +13,6 @@ import com.android.pulmuone.sample.ui.pin.viewmodel.PinCodeViewModel
 import com.android.pulmuone.sample.ui.pin.viewmodel.PinCodeViewModelFactory
 import com.android.pulmuone.sample.ui.main.MainActivity
 import com.android.pulmuone.sample.ui.base.Instance
-import com.android.pulmuone.sample.utils.EncryptSharedPreferences
 
 class PinCodeFragment : Fragment() {
 
@@ -26,10 +25,8 @@ class PinCodeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentPincodeBinding.inflate(inflater)
-        val sharedPreferences =
-            EncryptSharedPreferences.getInstance(requireContext()).sharedPreferences
         viewModel =
-            ViewModelProvider(requireActivity(), PinCodeViewModelFactory(sharedPreferences))[PinCodeViewModel::class.java]
+            ViewModelProvider(requireActivity(), PinCodeViewModelFactory())[PinCodeViewModel::class.java]
         binding.lifecycleOwner = viewLifecycleOwner
         binding.pinViewModel = viewModel
 

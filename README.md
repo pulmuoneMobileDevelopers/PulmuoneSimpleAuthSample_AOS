@@ -399,7 +399,7 @@ dependencies {
 * .ui.pin.listener - NumPad
 * .ui.pin.view - PinCodeFragment, PinModuleActivity
 * .ui.pin.viewmodel - PinCodeViewModel, PinCodeViewModelFactory
-* .utils - EncryptSharedPreferences, SingletonHolder
+* .utils - AndroidKeyStoreUtil, SingletonHolder
 *
 * res
 * layout - activity_pinmodule, fragment_pincode, layout_pin_code_dots, layout_pin_code_numpad

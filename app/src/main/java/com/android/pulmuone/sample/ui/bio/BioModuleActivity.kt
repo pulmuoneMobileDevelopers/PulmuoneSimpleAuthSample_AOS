@@ -54,7 +54,6 @@ class BioModuleActivity : AppCompatActivity() {
         /*
             do not work - delete super.onBackPressed()
         */
-//        super.onBackPressed()
     }
 
     private fun init() {
@@ -143,48 +142,34 @@ class BioModuleActivity : AppCompatActivity() {
                             finish()
                         }
                         else -> {
-                            if(errorCode != 0
-                                && errorCode != BiometricPrompt.BIOMETRIC_ERROR_CANCELED
-                                && errorCode != BiometricPrompt.BIOMETRIC_ERROR_LOCKOUT
-                                && errorCode != BiometricPrompt.BIOMETRIC_ERROR_LOCKOUT_PERMANENT
-                                && errorCode != BiometricPrompt.BIOMETRIC_ERROR_NO_BIOMETRICS
-                            ) {
-                                GentleToast.with(this)
-                                    .shortToast(errorMsg)
-                                    .setTextColor(R.color.colorErrText)
-                                    .setBackgroundColor(R.color.colorErrBg)
-                                    .setBackgroundRadius(4)
-                                    .setTextSize(14)
-                                    .show()
-                            }
                             when(errorCode) {
                                 /*
                                   지문이 일치하지 않을 때
                                  */
-                                0 -> {}
+                                0 -> { Log.d("BioModuleActivity:::", "BIOMETRIC_NOT MATCH") }
 
                                 /*
                                   The hardware is unavailable. Try again later.
                                  */
-                                BiometricPrompt.BIOMETRIC_ERROR_HW_UNAVAILABLE -> {}
+                                BiometricPrompt.BIOMETRIC_ERROR_HW_UNAVAILABLE -> { Log.d("BioModuleActivity:::", "BIOMETRIC_ERROR_HW_UNAVAILABLE") }
 
                                 /*
                                   Error state returned when the sensor was unable to process the current image.
                                  */
-                                BiometricPrompt.BIOMETRIC_ERROR_UNABLE_TO_PROCESS -> {}
+                                BiometricPrompt.BIOMETRIC_ERROR_UNABLE_TO_PROCESS -> { Log.d("BioModuleActivity:::", "BIOMETRIC_ERROR_UNABLE_TO_PROCESS") }
 
                                 /*
                                   Error state returned when the current request has been running too long. This is intended to
                                   prevent programs from waiting for the biometric sensor indefinitely. The timeout is platform
                                   and sensor-specific, but is generally on the order of 30 seconds.
                                  */
-                                BiometricPrompt.BIOMETRIC_ERROR_TIMEOUT -> {}
+                                BiometricPrompt.BIOMETRIC_ERROR_TIMEOUT -> { Log.d("BioModuleActivity:::", "BIOMETRIC_ERROR_UNABLE_TO_PROCESS") }
 
                                 /*
                                   Error state returned for operations like enrollment; the operation cannot be completed
                                   because there's not enough storage remaining to complete the operation.
                                  */
-                                BiometricPrompt.BIOMETRIC_ERROR_NO_SPACE -> {}
+                                BiometricPrompt.BIOMETRIC_ERROR_NO_SPACE -> { Log.d("BioModuleActivity:::", "BIOMETRIC_ERROR_NO_SPACE") }
 
                                 /*
                                   The operation was canceled because the biometric sensor is unavailable. For example, this may
@@ -192,9 +177,8 @@ class BioModuleActivity : AppCompatActivity() {
                                   or disables it.
                                  */
                                 BiometricPrompt.BIOMETRIC_ERROR_CANCELED -> {
-                                    if(defaultDialog != null && defaultDialog!!.isShowing) {
-                                        defaultDialog!!.dismiss()
-                                    }
+                                    Log.d("BioModuleActivity:::", "BIOMETRIC_ERROR_CANCELED")
+                                    if(defaultDialog != null && defaultDialog!!.isShowing) { defaultDialog!!.dismiss() }
                                     defaultDialog = DefaultDialog(
                                         this,
                                         "",
@@ -230,6 +214,7 @@ class BioModuleActivity : AppCompatActivity() {
                                   > The user does not have any biometrics enrolled.
                                  */
                                 BiometricPrompt.BIOMETRIC_ERROR_LOCKOUT, BiometricPrompt.BIOMETRIC_ERROR_LOCKOUT_PERMANENT, BiometricPrompt.BIOMETRIC_ERROR_NO_BIOMETRICS -> {
+                                    Log.d("BioModuleActivity:::", "BIOMETRIC_ERROR_LOCKOUT, BIOMETRIC_ERROR_LOCKOUT_PERMANENT, BIOMETRIC_ERROR_NO_BIOMETRICS")
                                     if(defaultDialog != null && defaultDialog!!.isShowing) {
                                         defaultDialog!!.dismiss()
                                     }
@@ -257,26 +242,30 @@ class BioModuleActivity : AppCompatActivity() {
                                   errors to the {@link BiometricPrompt.AuthenticationCallback#onAuthenticationError(int,
                                   CharSequence)} callback. OEMs should expect that the error message will be shown to users.
                                  */
-                                BiometricPrompt.BIOMETRIC_ERROR_VENDOR -> {}
+                                BiometricPrompt.BIOMETRIC_ERROR_VENDOR -> { Log.d("BioModuleActivity:::", "BIOMETRIC_ERROR_VENDOR") }
 
                                 /*
                                   The user canceled the operation. Upon receiving this, applications should use alternate
                                   authentication (e.g. a password). The application should also provide the means to return to
                                   biometric authentication, such as a "use <biometric>" button.
                                  */
-                                BiometricPrompt.BIOMETRIC_ERROR_USER_CANCELED -> {}
+                                BiometricPrompt.BIOMETRIC_ERROR_USER_CANCELED -> { Log.d("BioModuleActivity:::", "BIOMETRIC_ERROR_USER_CANCELED") }
 
                                 /*
                                   The device does not have a biometric sensor.
                                  */
-                                BiometricPrompt.BIOMETRIC_ERROR_HW_NOT_PRESENT -> {}
+                                BiometricPrompt.BIOMETRIC_ERROR_HW_NOT_PRESENT -> { Log.d("BioModuleActivity:::", "BIOMETRIC_ERROR_HW_NOT_PRESENT") }
 
                                 /*
                                   The user pressed the negative button. This is a placeholder that is currently only used
                                   by the support library.
                                   @hide
                                  */
-                                13 -> { // BIOMETRIC_ERROR_NEGATIVE_BUTTON -> 사용자가 '취소'버튼 클릭
+                                13 -> {
+                                    /*
+                                     * 사용자가 '취소'버튼 클릭
+                                     */
+                                    Log.d("BioModuleActivity:::", "BIOMETRIC_ERROR_NEGATIVE_BUTTON")
                                     startActivity(Intent(this@BioModuleActivity, MainActivity::class.java))
                                     overridePendingTransition(0, 0)
                                     finish()
@@ -287,7 +276,7 @@ class BioModuleActivity : AppCompatActivity() {
                                   {@link BiometricPrompt.Builder#setAllowedAuthenticators(int)},
                                   {@link Authenticators#DEVICE_CREDENTIAL}, and {@link BiometricManager#canAuthenticate(int)}.
                                  */
-                                BiometricPrompt.BIOMETRIC_ERROR_NO_DEVICE_CREDENTIAL -> {}
+                                BiometricPrompt.BIOMETRIC_ERROR_NO_DEVICE_CREDENTIAL -> { Log.d("BioModuleActivity:::", "BIOMETRIC_ERROR_NO_DEVICE_CREDENTIAL") }
 
                                 /*
                                   A security vulnerability has been discovered and the sensor is unavailable until a
@@ -295,7 +284,7 @@ class BioModuleActivity : AppCompatActivity() {
                                   authentication was requested with {@link Authenticators#BIOMETRIC_STRONG}, but the
                                   sensor's strength can currently only meet {@link Authenticators#BIOMETRIC_WEAK}.
                                  */
-                                BiometricPrompt.BIOMETRIC_ERROR_SECURITY_UPDATE_REQUIRED -> {}
+                                BiometricPrompt.BIOMETRIC_ERROR_SECURITY_UPDATE_REQUIRED -> { Log.d("BioModuleActivity:::", "BIOMETRIC_ERROR_NO_DEVICE_CREDENTIAL") }
                             }
                         }
                     }
@@ -334,48 +323,34 @@ class BioModuleActivity : AppCompatActivity() {
                             finish()
                         }
                         else -> {
-                            if(errorCode != 0
-                                && errorCode != BiometricPrompt.BIOMETRIC_ERROR_CANCELED
-                                && errorCode != BiometricPrompt.BIOMETRIC_ERROR_LOCKOUT
-                                && errorCode != BiometricPrompt.BIOMETRIC_ERROR_LOCKOUT_PERMANENT
-                                && errorCode != BiometricPrompt.BIOMETRIC_ERROR_NO_BIOMETRICS
-                            ) {
-                                GentleToast.with(this)
-                                    .shortToast(errorMsg)
-                                    .setTextColor(R.color.colorErrText)
-                                    .setBackgroundColor(R.color.colorErrBg)
-                                    .setBackgroundRadius(4)
-                                    .setTextSize(14)
-                                    .show()
-                            }
                             when(errorCode) {
                                 /*
                                   지문이 일치하지 않을 때
                                  */
-                                0 -> {}
+                                0 -> { Log.d("BioModuleActivity:::", "BIOMETRIC_NOT MATCH") }
 
                                 /*
                                   The hardware is unavailable. Try again later.
                                  */
-                                BiometricPrompt.BIOMETRIC_ERROR_HW_UNAVAILABLE -> {}
+                                BiometricPrompt.BIOMETRIC_ERROR_HW_UNAVAILABLE -> { Log.d("BioModuleActivity:::", "BIOMETRIC_ERROR_HW_UNAVAILABLE") }
 
                                 /*
                                   Error state returned when the sensor was unable to process the current image.
                                  */
-                                BiometricPrompt.BIOMETRIC_ERROR_UNABLE_TO_PROCESS -> {}
+                                BiometricPrompt.BIOMETRIC_ERROR_UNABLE_TO_PROCESS -> { Log.d("BioModuleActivity:::", "BIOMETRIC_ERROR_UNABLE_TO_PROCESS") }
 
                                 /*
                                   Error state returned when the current request has been running too long. This is intended to
                                   prevent programs from waiting for the biometric sensor indefinitely. The timeout is platform
                                   and sensor-specific, but is generally on the order of 30 seconds.
                                  */
-                                BiometricPrompt.BIOMETRIC_ERROR_TIMEOUT -> {}
+                                BiometricPrompt.BIOMETRIC_ERROR_TIMEOUT -> { Log.d("BioModuleActivity:::", "BIOMETRIC_ERROR_TIMEOUT") }
 
                                 /*
                                   Error state returned for operations like enrollment; the operation cannot be completed
                                   because there's not enough storage remaining to complete the operation.
                                  */
-                                BiometricPrompt.BIOMETRIC_ERROR_NO_SPACE -> {}
+                                BiometricPrompt.BIOMETRIC_ERROR_NO_SPACE -> { Log.d("BioModuleActivity:::", "BIOMETRIC_ERROR_NO_SPACE") }
 
                                 /*
                                   The operation was canceled because the biometric sensor is unavailable. For example, this may
@@ -383,9 +358,8 @@ class BioModuleActivity : AppCompatActivity() {
                                   or disables it.
                                  */
                                 BiometricPrompt.BIOMETRIC_ERROR_CANCELED -> {
-                                    if(defaultDialog != null && defaultDialog!!.isShowing) {
-                                        defaultDialog!!.dismiss()
-                                    }
+                                    Log.d("BioModuleActivity:::", "BIOMETRIC_ERROR_CANCELED")
+                                    if(defaultDialog != null && defaultDialog!!.isShowing) { defaultDialog!!.dismiss() }
                                     defaultDialog = DefaultDialog(
                                         this,
                                         "",
@@ -421,9 +395,8 @@ class BioModuleActivity : AppCompatActivity() {
                                   > The user does not have any biometrics enrolled.
                                  */
                                 BiometricPrompt.BIOMETRIC_ERROR_LOCKOUT, BiometricPrompt.BIOMETRIC_ERROR_LOCKOUT_PERMANENT, BiometricPrompt.BIOMETRIC_ERROR_NO_BIOMETRICS -> {
-                                    if(defaultDialog != null && defaultDialog!!.isShowing) {
-                                        defaultDialog!!.dismiss()
-                                    }
+                                    Log.d("BioModuleActivity:::", "BIOMETRIC_ERROR_LOCKOUT, BIOMETRIC_ERROR_LOCKOUT_PERMANENT, BIOMETRIC_ERROR_NO_BIOMETRICS")
+                                    if(defaultDialog != null && defaultDialog!!.isShowing) { defaultDialog!!.dismiss() }
                                     defaultDialog = DefaultDialog(
                                         this,
                                         "",
@@ -448,26 +421,30 @@ class BioModuleActivity : AppCompatActivity() {
                                   errors to the {@link BiometricPrompt.AuthenticationCallback#onAuthenticationError(int,
                                   CharSequence)} callback. OEMs should expect that the error message will be shown to users.
                                  */
-                                BiometricPrompt.BIOMETRIC_ERROR_VENDOR -> {}
+                                BiometricPrompt.BIOMETRIC_ERROR_VENDOR -> { Log.d("BioModuleActivity:::", "BIOMETRIC_ERROR_VENDOR") }
 
                                 /*
                                   The user canceled the operation. Upon receiving this, applications should use alternate
                                   authentication (e.g. a password). The application should also provide the means to return to
                                   biometric authentication, such as a "use <biometric>" button.
                                  */
-                                BiometricPrompt.BIOMETRIC_ERROR_USER_CANCELED -> {}
+                                BiometricPrompt.BIOMETRIC_ERROR_USER_CANCELED -> { Log.d("BioModuleActivity:::", "BIOMETRIC_ERROR_USER_CANCELED") }
 
                                 /*
                                   The device does not have a biometric sensor.
                                  */
-                                BiometricPrompt.BIOMETRIC_ERROR_HW_NOT_PRESENT -> {}
+                                BiometricPrompt.BIOMETRIC_ERROR_HW_NOT_PRESENT -> { Log.d("BioModuleActivity:::", "BIOMETRIC_ERROR_HW_NOT_PRESENT") }
 
                                 /*
                                   The user pressed the negative button. This is a placeholder that is currently only used
                                   by the support library.
                                   @hide
                                  */
-                                13 -> { // BIOMETRIC_ERROR_NEGATIVE_BUTTON -> 사용자가 '취소'버튼 클릭
+                                13 -> {
+                                    /*
+                                     * 사용자가 '취소'버튼 클릭
+                                     */
+                                    Log.d("BioModuleActivity:::", "BIOMETRIC_ERROR_NEGATIVE_BUTTON")
                                     startActivity(Intent(this@BioModuleActivity, MainActivity::class.java))
                                     overridePendingTransition(0, 0)
                                     finish()
@@ -478,7 +455,7 @@ class BioModuleActivity : AppCompatActivity() {
                                   {@link BiometricPrompt.Builder#setAllowedAuthenticators(int)},
                                   {@link Authenticators#DEVICE_CREDENTIAL}, and {@link BiometricManager#canAuthenticate(int)}.
                                  */
-                                BiometricPrompt.BIOMETRIC_ERROR_NO_DEVICE_CREDENTIAL -> {}
+                                BiometricPrompt.BIOMETRIC_ERROR_NO_DEVICE_CREDENTIAL -> { Log.d("BioModuleActivity:::", "BIOMETRIC_ERROR_NO_DEVICE_CREDENTIAL") }
 
                                 /*
                                   A security vulnerability has been discovered and the sensor is unavailable until a
@@ -486,7 +463,7 @@ class BioModuleActivity : AppCompatActivity() {
                                   authentication was requested with {@link Authenticators#BIOMETRIC_STRONG}, but the
                                   sensor's strength can currently only meet {@link Authenticators#BIOMETRIC_WEAK}.
                                  */
-                                BiometricPrompt.BIOMETRIC_ERROR_SECURITY_UPDATE_REQUIRED -> {}
+                                BiometricPrompt.BIOMETRIC_ERROR_SECURITY_UPDATE_REQUIRED -> { Log.d("BioModuleActivity:::", "BIOMETRIC_ERROR_SECURITY_UPDATE_REQUIRED") }
                             }
                         }
                     }

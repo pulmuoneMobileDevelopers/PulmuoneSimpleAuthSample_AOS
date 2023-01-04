@@ -17,5 +17,8 @@ object Constants {
     const val BIO_AUTH = "bio"                                          // 생체 인증
     const val PIN_AUTH = "pin"                                          // 간편비밀번호 인증
 
+    const val DEVICE_NOT_ENROLLED = "DeviceNotEnrolled"                 // 생체인증 등록되어 있지 않음
+    const val DEVICE_NOT_SUPPORTED = "DeviceNotSupported"               // 디바이스가 생체인증을 지원하지 않음
+
     const val MY_PERMISSION_REQUEST_WRITE_EXTERNAL_STORAGE = 1001
 }

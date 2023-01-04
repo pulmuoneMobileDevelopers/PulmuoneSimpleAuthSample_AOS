@@ -19,6 +19,8 @@ import com.android.pulmuone.sample.ui.bio.BioModuleActivity
 import com.android.pulmuone.sample.ui.pin.view.PinModuleActivity
 import com.android.pulmuone.dialog.DefaultDialog
 import com.android.pulmuone.sample.ui.main.MainActivity
+import com.android.pulmuone.sample.utils.Constants.DEVICE_NOT_ENROLLED
+import com.android.pulmuone.sample.utils.Constants.DEVICE_NOT_SUPPORTED
 
 class AuthenticationMethodActivity : AppCompatActivity() {
 
@@ -41,17 +43,15 @@ class AuthenticationMethodActivity : AppCompatActivity() {
             val bioManager = BioManager.getInstance(this)
             if (bioManager.isSupportBiometrics().success) {
                 startActivity(
-                    Intent(this, BioModuleActivity::class.java).putExtra(
-                        "from",
-                        KEY_AUTH_METHOD
-                    )
+                    Intent(this, BioModuleActivity::class.java)
+                        .putExtra("from", KEY_AUTH_METHOD)
                 )
                 overridePendingTransition(0, 0)
                 finish()
             } else {
                 val msg: String?
                 when {
-                    bioManager.isSupportBiometrics().errorType.toString() == "DeviceNotEnrolled" -> {
+                    bioManager.isSupportBiometrics().errorType.toString() == DEVICE_NOT_ENROLLED -> {
                         msg = getString(R.string.device_not_enrolled)
                         defaultDialog = DefaultDialog(
                             this,
@@ -72,7 +72,7 @@ class AuthenticationMethodActivity : AppCompatActivity() {
                         )
                         if (!(this as Activity).isFinishing) defaultDialog?.show()
                     }
-                    bioManager.isSupportBiometrics().errorType.toString() == "DeviceNotSupported" -> {
+                    bioManager.isSupportBiometrics().errorType.toString() == DEVICE_NOT_SUPPORTED -> {
                         msg = getString(R.string.device_not_supported)
                         defaultDialog = DefaultDialog(
                             this,
@@ -111,10 +111,8 @@ class AuthenticationMethodActivity : AppCompatActivity() {
         val btnPin = findViewById<ConstraintLayout>(R.id.btnPin)
         btnPin.setOnClickListener {
             startActivity(
-                Intent(this, PinModuleActivity::class.java).putExtra(
-                    "from",
-                    KEY_AUTH_METHOD
-                )
+                Intent(this, PinModuleActivity::class.java)
+                    .putExtra("from", KEY_AUTH_METHOD)
             )
             overridePendingTransition(0, 0)
             finish()
